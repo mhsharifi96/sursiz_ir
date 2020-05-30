@@ -46,8 +46,8 @@ class TwitApiView(APIView):
                 print('image1111')
                 # print(image)
                 data['image'] = request.POST.get('image') 
-            if deny_text.encode('utf-8') in data['description']:
-                data['status'] = 0
+            # if deny_text.encode('utf-8') in data['description']:
+            #     data['status'] = 0
             serializer = TwitSerializers(data=data)
             
             if serializer.is_valid():
