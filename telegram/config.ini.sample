@@ -1,0 +1,11 @@
+[Telegram]
+# no need for quotes
+
+# you can get telegram development credentials in telegram API Development Tools
+api_id = <APIID>
+api_hash = <APIHASH>
+
+# use full phone number including + and country code
+phone = +989358350190
+username = @mhs969
+
