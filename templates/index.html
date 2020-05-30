@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+{% load static %}
+<!-- saved from url=(0057)https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/ -->
+<html lang="en" dir="rtl">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.5">
+  <title>Offcanvas template · Bootstrap 4 RTL</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href=" {% static 'bootstrap.css' %}" rel="stylesheet">
+  <!-- Cutuom css -->
+  <link href=" {% static 'styles.css' %}" rel="stylesheet">
+
+
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="{% static 'offcanvas.rtl.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+  <!-- start Header -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand mr-auto mr-lg-0" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Offcanvas
+      navbar</a>
+    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Dashboard <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Notifications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Switch account</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#"
+            id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Action</a>
+            <a class="dropdown-item" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Another
+              action</a>
+            <a class="dropdown-item" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Something else
+              here</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="nav-scroller bg-white shadow-sm">
+    <nav class="nav nav-underline">
+      <a class="nav-link active" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Dashboard</a>
+      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">
+        Friends
+        <span class="badge badge-pill bg-light align-text-bottom">27</span>
+      </a>
+      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Explore</a>
+      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Suggestions</a>
+      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
+      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
+      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
+      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
+      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
+    </nav>
+  </div>
+  <!-- end Header -->
+
+  <!-- Main Content -->
+  <main role="main" class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+      <img class="mr-3" src="{% static 'bootstrap-outline.svg' %}" alt="" width="48" height="48">
+      <div class="lh-100">
+        <h6 class="mb-0 text-white lh-100">Bootstrap</h6>
+        <small>Since 2011</small>
+      </div>
+    </div>
+
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+      <div class="media text-muted pt-3">
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+          <title>Placeholder</title>
+          <rect fill="#007bff" width="100%" height="100%"></rect><text fill="#007bff" dy=".3em" x="50%"
+            y="50%">32x32</text>
+        </svg>
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <strong class="d-block text-gray-dark">@username</strong>
+          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+          condimentum nibh, ut fermentum massa justo sit amet risus.
+        </p>
+      </div>
+      <div class="media text-muted pt-3">
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+          <title>Placeholder</title>
+          <rect fill="#e83e8c" width="100%" height="100%"></rect><text fill="#e83e8c" dy=".3em" x="50%"
+            y="50%">32x32</text>
+        </svg>
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <strong class="d-block text-gray-dark">@username</strong>
+          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+          condimentum nibh, ut fermentum massa justo sit amet risus.
+        </p>
+      </div>
+      <div class="media text-muted pt-3">
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+          <title>Placeholder</title>
+          <rect fill="#6f42c1" width="100%" height="100%"></rect><text fill="#6f42c1" dy=".3em" x="50%"
+            y="50%">32x32</text>
+        </svg>
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <strong class="d-block text-gray-dark">@username</strong>
+          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+          condimentum nibh, ut fermentum massa justo sit amet risus.
+        </p>
+      </div>
+      <small class="d-block text-right mt-3">
+        <a href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">All updates</a>
+      </small>
+    </div>
+
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <h6 class="border-bottom border-gray pb-2 mb-0">Suggestions</h6>
+      <div class="media text-muted pt-3">
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+          <title>Placeholder</title>
+          <rect fill="#007bff" width="100%" height="100%"></rect><text fill="#007bff" dy=".3em" x="50%"
+            y="50%">32x32</text>
+        </svg>
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">Full Name</strong>
+            <a href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Follow</a>
+          </div>
+          <span class="d-block">@username</span>
+        </div>
+      </div>
+      <div class="media text-muted pt-3">
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+          <title>Placeholder</title>
+          <rect fill="#007bff" width="100%" height="100%"></rect><text fill="#007bff" dy=".3em" x="50%"
+            y="50%">32x32</text>
+        </svg>
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">Full Name</strong>
+            <a href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Follow</a>
+          </div>
+          <span class="d-block">@username</span>
+        </div>
+      </div>
+      <div class="media text-muted pt-3">
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+          <title>Placeholder</title>
+          <rect fill="#007bff" width="100%" height="100%"></rect><text fill="#007bff" dy=".3em" x="50%"
+            y="50%">32x32</text>
+        </svg>
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">Full Name</strong>
+            <a href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Follow</a>
+          </div>
+          <span class="d-block">@username</span>
+        </div>
+      </div>
+      <small class="d-block text-right mt-3">
+        <a href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">All suggestions</a>
+      </small>
+    </div>
+  </main>
+  <!-- End Main Content -->
+
+  <!-- Start Footer -->
+  <footer class="blog-footer">
+    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
+        href="https://twitter.com/mdo">@mdo</a>.</p>
+    <p>
+      <a href="#">پرش به بالای صفحه</a>
+    </p>
+  </footer>
+  <!-- End Footer -->
+  
+  <script src="{% static 'jquery-3.3.1.slim.min.js' %}"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="{% static 'bootstrap.bundle.js' %}"></script>
+  <script src="{% static 'offcanvas.js' %}"></script>
+
+
+</body>
+
+</html>
