@@ -63,7 +63,7 @@ async def my_event_handler(event):
     # print(event.is_channel())
     # if event.is_channel():
     # if event.audio:
-    print(event)
+    # print(event)
     # if event.photo : 
     #     print(event.raw_text)
     #     await client.download_media(event.photo,'downloads/')
