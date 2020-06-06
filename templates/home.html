@@ -75,8 +75,12 @@
           <button style="margin-left: 2%;    font-size: 9px;margin: auto;" type="button" class="btn btn-danger" data-toggle="modal" >
             غیر مفید:\</button>
           {% if user.is_superuser %}
-          <button style="margin-left: 2%;    font-size: 9px;margin: auto;" type="button" class="btn btn-warning" data-toggle="modal" >
+          <form action="remove/twit/{{twit.id}}/" method="get">
+            {% csrf_token %}
+            <button style="margin-left: 2%;    font-size: 9px;margin: auto;" type="submit" class="btn btn-warning" data-toggle="modal" >
           حذف</button>
+          </form>
+          
           {%endif%}
       </div>  
     </div>

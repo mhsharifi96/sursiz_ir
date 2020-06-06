@@ -7,7 +7,7 @@ from bors.models import Twit,Company
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
 from rest_framework.parsers import MultiPartParser
-
+from django.http import Http404
 
 class TwitApiView(APIView):
 
@@ -58,3 +58,24 @@ class TwitApiView(APIView):
         else:
             return Response({'data':'not found'}, status=status.HTTP_404_NOT_FOUND)
 
+
+class TwitDetailApiView(APIView):
+    def get_object(self, pk):
+        try:
+            return Twit.objects.get(pk=pk)
+        except Twit.DoesNotExist:
+            raise Http404
+    def get(self, request, pk, format=None):
+        pass
+    def post(self, request, pk, format=None):
+        pass
+    def put(self, request, pk, format=None):
+        pass
+    def delete(self, request, pk, format=None):
+        print("iam in delete ")
+        twit = self.get_object(pk)
+        twit.status ="0"
+        twit.save()
+        return Response({
+            "message" : "ok"
+        })

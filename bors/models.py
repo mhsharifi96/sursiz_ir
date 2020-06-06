@@ -46,8 +46,8 @@ class Category(models.Model):
 
 class Twit(models.Model):
     STATUS = (
-    (0,"Draft"),
-    (1,"Publish")
+    ("0","Draft"),
+    ("1","Publish")
     )
     description =  models.TextField()
     title = models.CharField( max_length=100,null = True, blank = True)
