@@ -5,7 +5,7 @@
   <img class="mr-3" src="{% static 'bootstrap-outline.svg' %}" alt="" width="48" height="48">
   <div class="lh-100">
     <h6 class="mb-0 text-white lh-100">آخرین ها</h6>
-    <small>امروز</small>
+    <small>تاریخ:{{jdate|date:"Y/m/d"}}</small>
   </div>
 </div>
 
@@ -65,9 +65,9 @@
         {% if twit.image %}
         <button style="margin-left: 2%;    font-size: 9px;margin: auto;" type="button" class="btn btn-success" data-toggle="modal" data-target="#id-{{twit.id}}">
           نمایش عکس</button>
-          {% else %}
+          {% comment %} {% else %}
           <button disabled style="margin-left: 2%;    font-size: 9px;margin: auto;" type="button" class="btn btn-success" data-toggle="modal">
-          نمایش عکس</button>
+          نمایش عکس</button> {% endcomment %}
         {% endif %}
         
           <button style="margin-left: 2%;font-size: 9px;margin: auto;" type="button" class="btn btn-primary" data-toggle="modal" >

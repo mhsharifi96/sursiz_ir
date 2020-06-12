@@ -4,6 +4,7 @@ import  datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.http import HttpResponse,HttpResponseRedirect,Http404
+import jdatetime
 # Create your views here.
 
 def index (request):
@@ -24,6 +25,7 @@ def index (request):
     return render(request, 'home.html',{
         'twits':twits,
         'companeis': companeis,
+        'jdate' : jdatetime.date.today()
     })
 
 class UnavailableTiwtView(LoginRequiredMixin,View):
