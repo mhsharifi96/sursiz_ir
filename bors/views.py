@@ -20,7 +20,7 @@ def index (request):
         # twits = Twit.objects.all().order_by('-created_on')[:20]
         twits = Twit.objects.filter(status=1,avaiable=True,company__status=1).order_by('-created_on')[:20]
     
-    companeis = Company.objects.all()
+    companeis = Company.objects.filter(status=1)
     print('twits : ',len(twits))
     return render(request, 'home.html',{
         'twits':twits,
