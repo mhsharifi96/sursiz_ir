@@ -14,5 +14,5 @@ anaconda-project.yml
 config.ini
 *.session
 node_modules/
-
+telegram/downloads/*.*
 *.pyc
