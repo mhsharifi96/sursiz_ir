@@ -29,7 +29,7 @@ class MYApiBorsSite():
         
     def CreateTwit(self,data):
         url = "http://127.0.0.1:8000/api/twit"
-        print('apiData :::::::: ',data)
+        # print('apiData :::::::: ',data)
         if data['image_path']:
             print('injam')
             with open(data['image_path'], "rb") as image_file:
@@ -67,7 +67,7 @@ class MYApiBorsSite():
                                 })
 
 
-        print(response.text)
+        # print(response.text)
         
     
 
