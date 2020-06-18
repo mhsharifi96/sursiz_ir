@@ -7,7 +7,7 @@ admin.site.register(Company)
 
 class TwitAdmin(admin.ModelAdmin):
     list_display = ('description', 'title','status')
-    list_editable = ('status',)
+    list_editable = ('status','title')
     list_filter = ('status',)
 
 
