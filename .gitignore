@@ -16,3 +16,6 @@ config.ini
 node_modules/
 telegram/downloads/*.*
 *.pyc
+
+media/twit/*
+media/twit/
