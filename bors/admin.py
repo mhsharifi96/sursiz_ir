@@ -4,4 +4,11 @@ from .models import Category,Company,Twit
 
 admin.site.register(Category)
 admin.site.register(Company)
-admin.site.register(Twit)
+
+class TwitAdmin(admin.ModelAdmin):
+    list_display = ('description', 'title','status')
+    list_editable = ('status',)
+    list_filter = ('status',)
+
+
+admin.site.register(Twit,TwitAdmin)
