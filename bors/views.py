@@ -37,7 +37,7 @@ class UnavailableTiwtView(LoginRequiredMixin,View):
     def get(self,request,pk) : 
         print("get pk : ",pk)
         twit = self.get_object(pk)
-        twit.status ="0"
+        twit.status =0
         twit.save()
         return HttpResponseRedirect('/')
 
