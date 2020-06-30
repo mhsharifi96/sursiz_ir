@@ -72,7 +72,7 @@ async def my_event_handler(event):
         if event.photo :
             print('photo')
             data['description'] = event.raw_text
-            print(event.raw_text)
+            # print(event.raw_text)
             # print(event.photo)
             image_path = await client.download_media(event.photo,'downloads/')
             data['image_path'] = image_path
@@ -80,12 +80,12 @@ async def my_event_handler(event):
             
             
             
-            print('----------***-----------')
+            # print('----------***-----------')
         if event.web_preview: 
             data['description'] = event.raw_text
             
-            print(event.raw_text)
-            print(event.media)
+            # print(event.raw_text)
+            # print(event.media)
             MyApi.CreateTwit(data)
 
             # CreatePost()

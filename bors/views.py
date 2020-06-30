@@ -45,3 +45,8 @@ class UnavailableTiwtView(LoginRequiredMixin,View):
     def post(self,request,pk):
         pass
             
+
+class CompanyDetailView(View):
+    def get(self,request):
+        pass
+    

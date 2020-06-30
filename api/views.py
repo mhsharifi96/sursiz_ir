@@ -9,7 +9,11 @@ from rest_framework.permissions import IsAuthenticated,IsAdminUser
 from rest_framework.parsers import MultiPartParser
 from django.http import Http404
 
-class TwitApiView(APIView):
+from rest_framework.pagination import PageNumberPagination
+from project.pagination import PaginationHandlerMixin
+
+
+class TwitApiAdminView(APIView):
 
     permission_classes = (IsAdminUser,)
     parser_classes = (MultiPartParser,)
@@ -52,11 +56,34 @@ class TwitApiView(APIView):
             
             if serializer.is_valid():
                 serializer.save()
-                print('im okkkkkkkkkkkkkk')
+                
                 return Response(serializer.data,status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({'data':'not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class BasicPagination(PageNumberPagination):
+    page_size_query_param = 'limit'
+    
+
+class TwitApiView(APIView, PaginationHandlerMixin):
+    pagination_class = BasicPagination
+    serializer_class = TwitSerializers
+
+    def get(self, request, format=None, *args, **kwargs) :
+        instance = Twit.objects.filter(status=1)
+        page = self.paginate_queryset(instance)
+        if page is not None:
+            serializer = self.get_paginated_response(self.serializer_class(page,many=True).data)
+
+        else:
+            serializer = self.serializer_class(instance, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+
 
 
 class TwitDetailApiView(APIView):
@@ -79,3 +106,7 @@ class TwitDetailApiView(APIView):
         return Response({
             "message" : "ok"
         })
+
+
+
+
