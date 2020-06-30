@@ -102,7 +102,7 @@ DATABASES = {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
        'NAME': config['Borsiz']['DatabaseName'],
        'USER': config['Borsiz']['DatabaseUser'],
-       'PASSWORD': config['Borsiz']['DatabasePassword'],
+       'PASSWORD': config['Borsiz']['DatabasePassword'].strip('"'),
        'HOST': '127.0.0.1',
        'PORT': '5432',
    }
