@@ -19,3 +19,6 @@ telegram/downloads/*.*
 config.ini
 media/twit/*
 media/twit/
+
+@mhs969.session-journal
+
