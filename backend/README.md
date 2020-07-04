@@ -16,12 +16,12 @@
 ``` source .env/bin/activate```  
 3. install pakages   
 ``` pip install - r requeirments.txt```
-4. rename `config-sample.ini` to `config.ini`
-5. create database on psql and set up database username and password on `config.ini` file
-6.import `myx.sql` file to new created database 
- `psql -U username dbname < myx.sql`
+4. rename `config-sample.ini` to `config.ini`  
+5. create database on psql and set up database username and password on `config.ini` file  
+6.import `myx.sql` file to new created database   
+ `psql -U username dbname < myx.sql`  
  
- 7.run django 
+ 7.run django   
  
  ```
  python manage.py makemigraions
