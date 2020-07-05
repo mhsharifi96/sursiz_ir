@@ -1,0 +1,1 @@
+https://sunscrapers.com/blog/how-to-use-elasticsearch-with-django/
