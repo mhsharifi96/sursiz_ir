@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="alert alert-info">
+  <p>نتیجه جستجو: {{search_text}}</p>
+</div>
+<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+  <img class="mr-3" src="{% static 'bootstrap-outline.svg' %}" alt="" width="48" height="48">
+  <div class="lh-100">
+    <h6 class="mb-0 text-white lh-100">آخرین ها</h6>
+    <small>تاریخ:{{jdate|date:"Y/m/d"}}</small>
+  </div>
+</div>
+
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+  <h6 class="border-bottom border-gray pb-2 mb-0">امروز</h6>
+  {% for twit in twits %}
+  
+
+  <div class="media text-muted pt-3 border-bottom">
+    <!-- <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+          <title>Placeholder</title>
+          <rect fill="#004567" width="100%" height="100%"></rect><text fill="#004567" dy=".3em" x="50%"
+            y="50%">32x32</text>
+        </svg> -->
+    {% if twit.image %}
+
+    <img class="bd-placeholder-img mr-2 rounded" src="{% static 'img/photo1.png'%}" alt="" width="32" height="32">
+    <!-- Button trigger modal -->
+    
+
+    <!-- Modal -->  
+    <div class="modal fade" id="id-{{twit.id}}" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">{{twit.company.name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="{{twit.image.url}}" alt="" width="100%" height="100%">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <img class="bd-placeholder-img mr-2 rounded" src="{% static 'img/twit2.png'%}" alt="" width="32" height="32">
+    {% endif %}
+    <div class="row">
+      <div class="col-md-12">
+        <p class="media-body pb-3 mb-0 small lh-125  border-gray" style="line-break: normal;">
+          <strong class="d-block text-gray-dark">{{twit.company.name}}</strong>
+          {{twit.description |linebreaksbr}}
+        </p>
+
+      </div>
+      <div class="col-md-12" style="margin-bottom: 2%;">
+        
+
+        {% if twit.image %}
+        <button style="margin-left: 2%;    font-size: 9px;margin: auto;" type="button" class="btn btn-success" data-toggle="modal" data-target="#id-{{twit.id}}">
+          نمایش عکس</button>
+          {% comment %} {% else %}
+          <button disabled style="margin-left: 2%;    font-size: 9px;margin: auto;" type="button" class="btn btn-success" data-toggle="modal">
+          نمایش عکس</button> {% endcomment %}
+        {% endif %}
+        
+          <button style="margin-left: 2%;font-size: 9px;margin: auto;" type="button" class="btn btn-primary" data-toggle="modal" >
+          مفید:)</button>
+          <button style="margin-left: 2%;    font-size: 9px;margin: auto;" type="button" class="btn btn-danger" data-toggle="modal" >
+            غیر مفید:\</button>
+          {% if user.is_superuser %}
+          <form action="remove/twit/{{twit.id}}/" method="get">
+            {% csrf_token %}
+            <button style="margin-left: 2%;    font-size: 9px;margin: auto;" type="submit" class="btn btn-warning" data-toggle="modal" >
+          حذف</button>
+          </form>
+          
+          {%endif%}
+      </div>  
+    </div>
+    
+    
+    <!-- <p>
+      {{twit.created_on}}
+    </p> -->
+  </div>
+  {% endfor %}
+
+  <!-- <small class="d-block text-right mt-3">
+        <a href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">All updates</a>
+      </small> -->
+</div>
+
+
+<div class="my-3 p-3 bg-white rounded shadow-sm ">
+
+  <h6 class="border-bottom border-gray pb-2 mb-0">
+    <img class="bd-placeholder-img mr-2 rounded" src="{%static 'img/company.png' %}" alt="" width="50" height="50">
+    کانال های تحت پوشش
+  </h6>
+  {% for company in companeis  %}
+  <div class="media text-muted pt-3">
+    <!-- <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+          <title>Placeholder</title>
+          <rect fill="#007bff" width="100%" height="100%"></rect><text fill="#007bff" dy=".3em" x="50%"
+            y="50%">32x32</text>
+        </svg> -->
+    <img class="bd-placeholder-img mr-2 rounded" src="{% static 'img/tick.png'%}" alt="" width="32" height="32">
+    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <strong class="text-gray-dark">{{ company.name }}</strong>
+        <!-- <a href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Follow</a> -->
+      </div>
+      <!-- <span class="d-block">@username</span> -->
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- <small class="d-block text-right mt-3">
+        <a href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">All suggestions</a>
+      </small> -->
+</div>
+<!--  -->
+
+{% endblock content %}

@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import index,UnavailableTiwtView
+from . import views
 urlpatterns = [
-    path('',index,name='index'),
-    path('remove/twit/<int:pk>/',UnavailableTiwtView.as_view()),
+    path('',views.index,name='index'),
+    path('search/',views.Search.as_view(),name="search"),
+    path('remove/twit/<int:pk>/',views.UnavailableTiwtView.as_view()),
     
 ]

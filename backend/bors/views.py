@@ -5,6 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.http import HttpResponse,HttpResponseRedirect,Http404
 import jdatetime
+from django.db.models import Q # new
+
 # Create your views here.
 
 def index (request):
@@ -50,3 +52,25 @@ class CompanyDetailView(View):
     def get(self,request):
         pass
     
+
+class Search(View):
+    def get(self,request):
+        return HttpResponseRedirect('/')
+    def post(self,request):
+        if request.POST.get('search'):
+            search_text = request.POST.get('search')
+            data = Twit.objects.filter(
+                Q(description__contains=search_text)|
+                Q(company__name__contains=search_text)|
+                Q(category__name__contains=search_text))
+            companeis = Company.objects.filter(status=1)
+            print('******************twits***************** : ',len(data))
+            return render(request, 'search.html',{
+                'twits':data,
+                'companeis': companeis,
+                'jdate' : jdatetime.date.today(),
+                'search_text': search_text
+            })
+
+        else:
+            return HttpResponseRedirect('/')

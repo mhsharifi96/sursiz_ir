@@ -13,7 +13,6 @@
   <meta name="generator" content="Jekyll v3.8.5">
   <title>بورسیز-اخبار و تحلیل های روز {{jdate|date:"Y/m/d"}}</title>
   <meta name="description" content="بررسی و آنالیز اخبار و جدیدترین تحلیل های بورس در تاریخ {{jdate|date:"Y/m/d"}}-یافتن بهترین سیگنال های بورس و فرابورس امروز {{jdate|date:"Y/m/d"}}"/>
-
   <!-- Bootstrap core CSS -->
   <link href=" {% static 'bootstrap.css' %}" rel="stylesheet">
   <!-- Cutuom css -->
@@ -76,10 +75,11 @@
           </div>
         </li>
       </ul> -->
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
+      <form class="form-inline my-2 my-lg-0" style="position: absolute; left:10px" method="POST" action="{% url 'search' %}">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="text" name="search" placeholder="جستجو..." aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">جستجو</button>
+      </form>
     </div>
   </nav>
 
