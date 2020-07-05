@@ -74,3 +74,26 @@ class Search(View):
 
         else:
             return HttpResponseRedirect('/')
+
+class SearchByDate(View):
+    def post(self,request):
+        pass
+    
+    def get(self,request,year,month,day):
+        try:
+            date = jdatetime.date(int(year),int(month),int(day))
+            year,month,day = str(date.togregorian()).split('-')
+        except:
+            print("errror when convert data:" + str(year) + "-"+str(month) + "-" + str(day))
+            return HttpResponseRedirect('/')
+        finally:
+            data = Twit.objects.filter(created_on__year=str(year)).filter(created_on__month=str(month)).filter(created_on__day=str(day))
+            companeis = Company.objects.filter(status=1)
+            print('******************twits***************** : ',len(data))
+            return render(request, 'search.html',{
+                'twits':data,
+                'companeis': companeis,
+                'jdate' : date,
+                'search_text': date
+            })
+        return HttpResponseRedirect('/')
