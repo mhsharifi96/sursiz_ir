@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'channels',
     'bors',
     'api',
+    'django.contrib.sitemaps',
 
 
 ]
@@ -81,14 +82,22 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'project.wsgi.application'
+
 ASGI_APPLICATION = "project.routing.application"
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer"
+#     }
+# }
+
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
 }
-
 
 
 # Database
@@ -102,6 +111,7 @@ CHANNEL_LAYERS = {
 #  }
 
 # Reading Configs
+WSGI_APPLICATION = 'project.wsgi.application'
 config = configparser.ConfigParser()
 config.read("project/config.ini")
 
@@ -115,6 +125,7 @@ DATABASES = {
        'PORT': '5432',
    }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

@@ -5,7 +5,11 @@
 <html lang="en" dir="rtl">
 
 <head>
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- <meta name="description" content=""> -->
@@ -83,22 +87,27 @@
     </div>
   </nav>
 
-  <!-- <div class="nav-scroller bg-white shadow-sm">
+  <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
-      <a class="nav-link active" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Dashboard</a>
-      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">
-        Friends
-        <span class="badge badge-pill bg-light align-text-bottom">27</span>
+      <a class="nav-link active" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">سیگنال های امروز</a>
+      {% for day in week %}
+      <a class="nav-link" href="/{{day.date}}">
+        سگینال {{day.date}} 
+        <span class="badge badge-pill bg-light align-text-bottom">{{day.len}}</span>
       </a>
-      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Explore</a>
+      
+      {% endfor %}
+      
+      
+      <!-- <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Explore</a>
       <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Suggestions</a>
       <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
       <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
       <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
       <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
-      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a>
+      <a class="nav-link" href="https://bootstrap.rtlcss.com/docs/4.2/examples/offcanvas/#">Link</a> -->
     </nav>
-  </div> -->
+  </div>
   <!-- end Header -->
 
   <!-- Main Content -->
