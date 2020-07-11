@@ -3,10 +3,18 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 // import screens
 import Home from './screens/Home';
+import Twitter from './screens/Twitter';
+import Chanel from './screens/Chanel';
+import Stock from './screens/Stock';
 
 const AppNavigator = createStackNavigator(
 {
-    Home: Home
+    Home: Home,
+    Twitter: Twitter,
+    Chanel:Chanel,
+    Stock:Stock,
+
+
 },
 {
     initialRouteName: 'Home',
