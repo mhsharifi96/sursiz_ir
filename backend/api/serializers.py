@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from bors.models import Twit,Category,Company
 
+from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
+from .document import  TwitDocument
+
+
 class Base64ImageField(serializers.ImageField):
     """
     A Django REST framework field for handling image-uploads through raw post data.
@@ -73,3 +77,9 @@ class TwitSerializers(serializers.ModelSerializer):
         return Twit.objects.create(**validated_data)
 
 
+
+class TwitDocumentSerializers(DocumentSerializer):
+    
+    class Meta : 
+        document = TwitDocument
+        fields = ('id', 'image', 'title','description', 'company','status' )
