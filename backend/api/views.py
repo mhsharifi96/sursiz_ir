@@ -163,7 +163,8 @@ class TwitDocumentView(DocumentViewSet):
         'description',
         'status',
         'category',
-        'company.name'
+        'company.name',
+        'company.id'
         
     )
     # Define filter fields
@@ -183,9 +184,9 @@ class TwitDocumentView(DocumentViewSet):
         },
         'title': 'title',
         'description': 'description',
-        
         'category': 'category',
         'company_name': 'company.name',
+        'company_id' : 'company.id',
         'status' : 'status',
 
         
