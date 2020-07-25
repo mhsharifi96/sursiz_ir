@@ -16,21 +16,61 @@ def update_document(sender, **kwargs):
     model_name = sender._meta.model_name
     instance = kwargs['instance']
 
-    if app_label == 'api':
+    # print(':::::::::::::::::::::::::::::::::::::',kwargs['instance'])
+
+    if app_label == 'twit':
         # If it is `books.Publisher` that is being updated.
-        if model_name == 'twit':
-            instances = instance.twit.all()
+        if model_name == 'company':
+            instances = instance.company.all()
             for _instance in instances:
                 registry.update(_instance)
 
         # If it is `books.Author` that is being updated.
-        if model_name == 'author':
-            instances = instance.books.all()
+        # if model_name == 'author':
+        #     instances = instance.books.all()
+        #     for _instance in instances:
+        #         registry.update(_instance)
+
+        # If it is `books.Tag` that is being updated.
+        # if model_name == 'tag':
+        #     instances = instance.books.all()
+        #     for _instance in instances:
+        #         registry.update(_instance)
+
+
+
+
+@receiver(post_delete)
+def delete_document(sender, **kwargs):
+    """Update document on deleted records.
+
+    Updates Book document from index if related `books.Publisher`
+    (`publisher`), `books.Author` (`authors`), `books.Tag` (`tags`) fields
+    have been removed from database.
+    """
+    app_label = sender._meta.app_label
+    model_name = sender._meta.model_name
+    instance = kwargs['instance']
+
+    # print(':::::::::::::::::::::::::::::::::::::',kwargs['instance'])
+
+    if app_label == 'twit':
+        # If it is `books.Publisher` that is being updated.
+        if model_name == 'company':
+            instances = instance.company.all()
             for _instance in instances:
                 registry.update(_instance)
 
-        # If it is `books.Tag` that is being updated.
-        if model_name == 'tag':
-            instances = instance.books.all()
-            for _instance in instances:
-                registry.update(_instance)
+        # # If it is `books.Author` that is being updated.
+        # if model_name == 'author':
+        #     instances = instance.books.all()
+        #     for _instance in instances:
+        #         registry.update(_instance)
+        #         # registry.delete(_instance, raise_on_error=False)
+
+        # # If it is `books.Tag` that is being updated.
+        # if model_name == 'tag':
+        #     instances = instance.books.all()
+        #     for _instance in instances:
+        #         registry.update(_instance)
+        #         # registry.delete(_instance, raise_on_error=False)
