@@ -5,10 +5,10 @@
 
 
 ### requirement 
- [x] python3  
- [x] postgres sql  
- [x] Elastic search  
- [x] resis server  
+ [*] python3  
+ [*] postgres sql  
+ [*] Elastic search  
+ [*] resis server  
  
  
  
