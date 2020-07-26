@@ -181,7 +181,7 @@ URL : `<HOST>/api/app/category/<id>/`
 e.x :
 
 ```
-request : <HOST>api/app/category/1/
+request : <HOST>/api/app/category/1/
 
 response :   
 {

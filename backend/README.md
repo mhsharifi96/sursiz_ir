@@ -5,7 +5,7 @@
 
 
 ### requirement 
- [x] python3
+ [x] python3  
  [x] postgres sql
  
  
