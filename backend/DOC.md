@@ -54,7 +54,9 @@ response :
 ```
 
 
-TODO : complete channel for categorized twit 
+TODO : complete channel for categorized twit   
+
+---
 
 ## Search and Categorization
 
@@ -183,6 +185,7 @@ response :
 
 ```
 
+---
 
 ## Category
 
