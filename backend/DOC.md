@@ -104,3 +104,91 @@ ex : http://127.0.0.1:8000/api/app/search/?company_name=%D8%AF%D9%84%D8%A7%D8%B1
 
 
 [ElasticSearch Document](https://django-elasticsearch-dsl-drf.readthedocs.io/en/0.20.8/nested_fields_usage_examples.html) for more info
+
+---
+
+## Campany
+برای دریافت لیست کامل نام کانال (که ما در برنامه آن ها را با نام کمپانی در نظر گرفته ایم تا درصورت اضافه شدن اطلاعات دیگر به مشکل برخورد نکنیم) به ادرس ذیل درخواست خود را ارسال میکنید.  
+
+URL : `<host>/api/app/company/`  
+که پاسخی همانند زیر دریافت مینمایید.  
+response : 
+```
+[
+    {
+        "id": 1,
+        "name": "سینگال های رانتی",
+        "telegram_url": "https://t.me/signalrantiii",
+        "telegram_channel_id": "1089466869",
+        "description": "قبل از خرید و فروش در بازار سرمایه اول اموزش ببینید \r\n\r\nدیر بیا ولی درست بیا\r\n\r\nبازار بورس همیشه هست و همیشه هم سهم خوب پیدا میشه \r\n\r\nهمیشه سهام کم ریسک و pبر e پایین بخرید\r\n\r\n\r\n1001089466869",
+        "image": null,
+        "slug": "signalrantiii",
+        "status": 1,
+        "status_show": 2,
+        "owner": 1
+    },
+    ...
+```
+
+همچنین برای دریافت یک کمپانی خاص کافی است به ادرس ذیل درخواست نمایید.  
+
+URL : `<HOST>/api/app/company/<id>/`  
+
+e.x:  
+```
+request : <HOST>/api/app/company/3/  
+
+response :   
+{
+    "id": 3,
+    "name": "کانال تک سهم",
+    "telegram_url": null,
+    "telegram_channel_id": "1329648288",
+    "description": "#معرفی بهترین #تک_سهم های بازار\r\n\r\n#کامل_ترین_پکیج_بورسی با بهترین کیفیت از ما بخواهید\r\n\r\n1001329648288",
+    "image": null,
+    "slug": "tak-sahm",
+    "status": 1,
+    "status_show": 2,
+    "owner": 1
+}
+
+
+```
+
+
+## Category
+
+برای دریافت کامل (لیست) دسته بندی ها هم به ادرس ذیل درخواست میدهیم 
+
+URL : `<HOST>/api/app/category`  
+
+response : 
+```
+[
+    {
+        "id": 1,
+        "name": "بورس",
+        "description": "تحلیل بورس و فرابورس",
+        "image": null
+    }
+]
+```
+
+و برای دریافت یک دسته خواست ادرس فوق را به همراه ای دی آن ارسال میکنید.
+
+URL : `<HOST>/api/app/category/<id>/`
+
+e.x :
+
+```
+request : <HOST>api/app/category/1/
+
+response :   
+{
+    "id": 1,
+    "name": "بورس",
+    "description": "تحلیل بورس و فرابورس",
+    "image": null
+}
+```
+
