@@ -26,7 +26,35 @@ URL : `<HOST>/api/app/twit/`
 
 که به معنای آن است صفحه ۱۹ و حداکثر در صفحه ۶۹ توییت نمایش می دهد.
 
+### new Twit (socket programing)
+با توجه به اینکه ممکن است در هنگام مشاهده توییت ها توییت جدید اضافه شود پس نیاز به سوکت داریم تا بتوانیم توییت های جدید را دریافت کنیم .
 
+برای دریافت توییت های جدید کافیست به ادرس ذیل درخواست دهید
+URL : `ws://<HOST>/ws/lobby/`  
+به عنوان مثال اگر هاست بر روی لوکال خود باشد ادرس به نحو ذیل می باشد.
+URL : `ws://127.0.0.1:8000/ws/lobby/`  
+
+**note** : in this url we use `ws` insted of `http`   
+**note** : just use in all twit and can't use on another part because this channel return uncategorized twit  
+
+response :  
+```
+{
+  "message": "پیام جدید",
+  "twit": {
+    "id": 3963,
+    "image": null,
+    "description": "آخرین تست برای چک کردن",
+    "title": "سلام خوبی",
+    "company": 1,
+    "category": 1,
+    "status": 1
+  }
+}
+```
+
+
+TODO : complete channel for categorized twit 
 
 ## Search and Categorization
 
@@ -191,4 +219,7 @@ response :
     "image": null
 }
 ```
+
+---
+
 
