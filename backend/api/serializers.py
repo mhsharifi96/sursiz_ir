@@ -70,7 +70,7 @@ class TwitSerializers(serializers.ModelSerializer):
     
     class Meta : 
         model = Twit
-        fields = ('id', 'image', 'description', 'company','category','status' )#"__all__"
+        fields = ('id', 'image', 'description', 'title','company','category','status' )#"__all__"
     
     def create(self,validated_data):
         
