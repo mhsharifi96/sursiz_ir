@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .serializers import TwitSerializers
+from .serializers import TwitSerializers,CompanySerializers,CategotySerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import datetime
-from bors.models import Twit,Company
+from bors.models import Twit,Company,Category
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
 from rest_framework.parsers import MultiPartParser
@@ -11,6 +11,9 @@ from django.http import Http404
 
 from rest_framework.pagination import PageNumberPagination
 from project.pagination import PaginationHandlerMixin
+
+from rest_framework import viewsets
+from  django.shortcuts import get_object_or_404
 
 
 class TwitApiAdminView(APIView):
@@ -83,9 +86,6 @@ class TwitApiView(APIView, PaginationHandlerMixin):
 
 
 
-
-
-
 class TwitDetailApiView(APIView):
     def get_object(self, pk):
         try:
@@ -109,6 +109,37 @@ class TwitDetailApiView(APIView):
 
 
 
+
+class CompanyViewSet(viewsets.ViewSet):
+    def list(self,request):
+        queryset = Company.objects.filter(status=1)
+        serializer = CompanySerializers(queryset,many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def retrieve(self,request,pk):
+        queryset = Company.objects.filter(status=1)
+        company = get_object_or_404(queryset,pk=pk)
+        serializer = CompanySerializers(company)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class CategoryViewset(viewsets.ViewSet):
+    def list(self,request):
+        queryset = Category.objects.all()
+        serializer = CategotySerializer(queryset,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+    def retrieve(self,request,pk):
+        queryset = Category.objects.all()
+        category = get_object_or_404(queryset,pk=pk)
+        serializer = CategotySerializer(category)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    
+
+
+
+
+
+### ElasticSearch 
 
 from django_elasticsearch_dsl_drf.constants import (
     LOOKUP_FILTER_TERMS,
@@ -238,3 +269,6 @@ class TwitDocumentView(DocumentViewSet):
     }
     # Specify default ordering
     ordering = ('-id', 'title')
+
+#END ElasticSearch
+
