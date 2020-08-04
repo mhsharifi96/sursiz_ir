@@ -1,0 +1,28 @@
+
+<label for="typeahead-basic">Search for a state:</label>
+<input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>
+<hr>
+<pre>Model: {{ model | json }}</pre>
+
+
+<br>
+<br>
+    <form>
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <input type="text" class="form-control" placeholder="نام کانال">
+          </div>
+          <div class="col-md-6 col-12">
+            <input type="text" class="form-control" placeholder="هرچه دل تنگت میخواهد">
+          </div>
+          
+        </div>
+        
+            <div class="d-flex justify-content-center btn-div">
+                <button type="submit" class="btn btn-primary">سیگنال</button>
+            </div>
+            
+        
+        
+    </form>
+

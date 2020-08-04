@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+@font-face {
+    font-family: "Tanha";
+    src: url('/assets/fonts/Tanha-FD.eot');
+    src: url('/assets/fonts/Tanha-FD.eot?#iefix') format('Yekan-opentype'),
+         url('/assets/fonts/Tanha-FD.woff') format('woff'),
+         url('/assets/fonts/Tanha-FD.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+*,html {
+    direction: rtl;
+    text-align: right;
+}
+
+body {
+    direction: rtl;
+    font-family: Tanha;
+}
