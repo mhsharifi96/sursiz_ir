@@ -268,7 +268,7 @@ class TwitDocumentView(DocumentViewSet):
         
     }
     # Specify default ordering
-    ordering = ('-id', 'title')
+    ordering = ('-id',)
 
 #END ElasticSearch
 
