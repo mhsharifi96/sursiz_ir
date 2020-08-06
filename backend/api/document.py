@@ -67,14 +67,14 @@ class TwitDocument(Document):
     status = fields.IntegerField(attr='status')
     id = fields.IntegerField(attr='id')
 
-    title = fields.TextField(
-        analyzer=html_strip,
-        fields={
-            'raw': fields.TextField(analyzer='keyword'),
-            'suggest': fields.CompletionField(),
+    # title = fields.TextField(
+    #     analyzer=html_strip,
+    #     fields={
+    #         'raw': fields.TextField(analyzer='keyword'),
+    #         'suggest': fields.CompletionField(),
             
-        }
-    )
+    #     }
+    # )
 
     description = fields.TextField(
         analyzer=html_strip,
