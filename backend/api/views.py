@@ -262,7 +262,7 @@ class TwitDocumentView(DocumentViewSet):
     # Define ordering fields
     ordering_fields = {
         'id': 'id',
-        'title': 'title',
+        # 'title': 'title',
         
         
         
