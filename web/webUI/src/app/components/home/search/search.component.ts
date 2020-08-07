@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-
+import { FormGroup, FormBuilder } from  '@angular/forms';
 
 
 const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
@@ -23,10 +23,28 @@ const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'C
 export class SearchComponent implements OnInit {
 
   public model: any;
+  searchForm: FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) {
+    this.createSearchForm();
+   }
 
   ngOnInit(): void {}
+
+  createSearchForm(){
+    this.searchForm = this.formBuilder.group({
+      companyName: [''],  
+      description: [''],
+      
+    });
+  }
+
+
+  onSubmit() {
+    console.log('Your form data : ', this.searchForm.value.companyName );
+  }
+
+
 
   search = (text$: Observable<string>) =>
     text$.pipe(

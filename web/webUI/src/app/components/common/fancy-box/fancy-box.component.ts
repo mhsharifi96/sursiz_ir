@@ -17,3 +17,7 @@ export class FancyBoxComponent implements OnInit {
   }
 
 }
+
+
+
+// fancybox on angular doc:  http://www.ng-guru.com/how-to-use-fancybox-in-angular-8-using-components/

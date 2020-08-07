@@ -7,13 +7,13 @@
 
 <br>
 <br>
-    <form>
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-6 col-12">
-            <input type="text" class="form-control" placeholder="نام کانال">
+            <input type="text" class="form-control" formControlName="companyName" placeholder="نام کانال">
           </div>
           <div class="col-md-6 col-12">
-            <input type="text" class="form-control" placeholder="هرچه دل تنگت میخواهد">
+            <input type="text" class="form-control" formControlName="description" placeholder="هرچه دل تنگت میخواهد">
           </div>
           
         </div>
