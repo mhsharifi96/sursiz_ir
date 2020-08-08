@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HomeService } from 'src/app/service/home.service';
 
 
 @Component({
@@ -9,7 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchResultComponent implements OnInit {
   company: string;
-  constructor(private router: ActivatedRoute) { }
+  twits =[];
+  next_page :string="";
+  number_next_page :number=1;
+  previous_page;
+
+  constructor(private router: ActivatedRoute,private homeService:HomeService) { }
 
   ngOnInit(): void {
     // this.router.queryParams.subscribe(params => {
@@ -19,8 +25,35 @@ export class SearchResultComponent implements OnInit {
     // console.log(this.router.snapshot.params.company); 
     this.router.params.subscribe((data:any)=>{
       console.log("man injam",data); // outputs: {slug: "angular"}
+    })
+    this.getTwits()
+
+    
+  }
+
+  getTwits(number_next_page=1){
+    this.homeService.fetchtwits(number_next_page.toString()).subscribe(
+      data =>{
+        console.log('twits contains : ',data['results'])
+        console.log('next page :',data['next'])
+        console.log('previous page : ',data['previous'])
+        this.next_page = data['next']
+        this.previous_page = data['previous']
+
+      }
+    )
+  }
+
+
+
+  onScroll() {
+    console.log('scrolled!!');
+    if (this.next_page){
+      this.number_next_page +=1
+      console.log('next page +1: ',this.number_next_page)
+      this.getTwits(this.number_next_page)
+
     }
-  )
   }
 
 }

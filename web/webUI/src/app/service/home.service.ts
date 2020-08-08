@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 
@@ -8,15 +8,22 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeService {
 
-  private readonly gettwits = `${environment.apiUrl}/api/app/twit/`;
+  private readonly twitUrl = `${environment.apiUrl}/api/app/twit/`;
 
   constructor(private http: HttpClient) { }
 
-  fetchtwits(){
-    return this.http.get(this.gettwits)
+  fetchtwits(pageNumber:string="1",offset:string="0",limit:string="100"){
+    // param https://www.tektutorialshub.com/angular/angular-pass-url-parameters-query-strings/
+    let params = new HttpParams()
+                .set('page', pageNumber)
+                .set('offset', offset)
+                .set('limit', limit);
+    return this.http.get(this.twitUrl,{params})
   }
 
-
+  getPaginationTwits(pageUrl){
+    return this.http.get(pageUrl);
+  }
 
 
 }

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 
@@ -40,6 +42,8 @@ import { FancyBoxComponent } from './components/common/fancy-box/fancy-box.compo
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
+    InfiniteScrollModule,
+    NgxSpinnerModule,
     
   ],
   providers: [],
