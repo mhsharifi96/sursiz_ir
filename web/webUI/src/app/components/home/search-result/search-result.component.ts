@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from 'src/app/service/home.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -14,8 +15,10 @@ export class SearchResultComponent implements OnInit {
   next_page :string="";
   number_next_page :number=1;
   previous_page;
+  allTwit=[];
 
-  constructor(private router: ActivatedRoute,private homeService:HomeService) { }
+  constructor(private router: ActivatedRoute,private homeService:HomeService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     // this.router.queryParams.subscribe(params => {
@@ -39,7 +42,8 @@ export class SearchResultComponent implements OnInit {
         console.log('previous page : ',data['previous'])
         this.next_page = data['next']
         this.previous_page = data['previous']
-
+        this.allTwit = this.allTwit.concat(data['results'])
+        console.log('length : ',this.allTwit.length)
       }
     )
   }
@@ -48,12 +52,13 @@ export class SearchResultComponent implements OnInit {
 
   onScroll() {
     console.log('scrolled!!');
-    if (this.next_page){
-      this.number_next_page +=1
-      console.log('next page +1: ',this.number_next_page)
-      this.getTwits(this.number_next_page)
+    this.spinner.show()
+    // if (this.next_page){
+    //   this.number_next_page +=1
+    //   console.log('next page +1: ',this.number_next_page)
+    //   this.getTwits(this.number_next_page)
 
-    }
+    // }
   }
 
 }

@@ -5,118 +5,63 @@
       نتایج جستجو :
     </h4>
   </div>
-
-  <div class="card-columns">
   <div class="search-results"
   infiniteScroll
-  [infiniteScrollDistance]="1"
-  [infiniteScrollThrottle]="300"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="150"
   (scrolled)="onScroll()">
+  <div class="card-columns">
+  
 
-
-
+  <div *ngFor="let twit of allTwit">
     <app-title-card></app-title-card>
-    <app-image-card></app-image-card>
-    <app-quote-card></app-quote-card>
-    <app-image-card></app-image-card>
-    <app-image-card></app-image-card>
-    <app-quote-card></app-quote-card>
-    <app-title-card></app-title-card>
-    <app-title-card></app-title-card>
-    <app-image-card></app-image-card>
-    <app-quote-card></app-quote-card>
-    <app-image-card></app-image-card>
-    <app-image-card></app-image-card>
-    <app-quote-card></app-quote-card>
-    <app-title-card></app-title-card>
-    <app-title-card></app-title-card>
-    <app-image-card></app-image-card>
-    <app-quote-card></app-quote-card>
-    <app-image-card></app-image-card>
-    <app-image-card></app-image-card>
-    <app-quote-card></app-quote-card>
-    <app-title-card></app-title-card>
-    <app-title-card></app-title-card>
-    <app-image-card></app-image-card>
-    <app-quote-card></app-quote-card>
-    <app-image-card></app-image-card>
-    <app-image-card></app-image-card>
-    <app-quote-card></app-quote-card>
-    <app-title-card></app-title-card>
+ 
   </div>
 
+    <!-- <app-image-card></app-image-card>
+    <app-quote-card></app-quote-card>
+    <app-image-card></app-image-card>
+    <app-image-card></app-image-card>
+    <app-quote-card></app-quote-card>
+    <app-title-card></app-title-card>
+    <app-title-card></app-title-card>
+    <app-image-card></app-image-card>
+    <app-quote-card></app-quote-card>
+    <app-image-card></app-image-card>
+    <app-image-card></app-image-card>
+    <app-quote-card></app-quote-card>
+    <app-title-card></app-title-card>
+    <app-title-card></app-title-card>
+    <app-image-card></app-image-card>
+    <app-quote-card></app-quote-card>
+    <app-image-card></app-image-card>
+    <app-image-card></app-image-card>
+    <app-quote-card></app-quote-card>
+    <app-title-card></app-title-card>
+    <app-title-card></app-title-card>
+    <app-image-card></app-image-card>
+    <app-quote-card></app-quote-card>
+    <app-image-card></app-image-card>
+    <app-image-card></app-image-card>
+    <app-quote-card></app-quote-card>
+    <app-title-card></app-title-card> -->
+  </div>
 
+   
+
+  </div>
+
+  <div class="col-12" style="margin-bottom: 5rem;padding: bottom 5%;">
+    <ngx-spinner
+    bdOpacity=0.9
+    bdColor=""
+    size="default"
+    color="#581f87"
+    type="ball-pulse-sync"
+    [fullScreen]="false"
+  >
     
-    
-
-    <!-- <div class="card p-3 text-right">
-          <blockquote class="blockquote mb-0">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">
-              <small class="text-muted">
-                Someone famous in <cite title="Source Title">Source Title</cite>
-              </small>
-            </footer>
-          </blockquote>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">لورم ایپسوم متن</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card p-3">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">لورم ایپسوم متن سلام خوبی باشه نه چه خبر شهرزادجانa</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">لورم ایپسوم متن سلام خوبی باشه نه چه خبر شهرزادجانa</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">لورم ایپسوم متن سلام خوبی باشه نه چه خبر شهرزادجانa</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-        
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div> -->
+  </ngx-spinner> 
   </div>
 
 
