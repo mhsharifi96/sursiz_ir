@@ -67,10 +67,10 @@ class CategotySerializer(serializers.ModelSerializer):
 
 class TwitSerializers(serializers.ModelSerializer):
     image = Base64ImageField(required=False,allow_null=True,max_length=None, use_url=True)
-    
+    company = CompanySerializers()
     class Meta : 
         model = Twit
-        fields = ('id', 'image', 'description', 'title','company','category','status' )#"__all__"
+        fields = ('id', 'image', 'description', 'title','company','category','status','created_on' )#"__all__"
     
     def create(self,validated_data):
         

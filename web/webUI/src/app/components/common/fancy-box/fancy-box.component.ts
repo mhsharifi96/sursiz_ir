@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 
@@ -9,7 +10,8 @@ declare var $: any;
   styleUrls: ['./fancy-box.component.css']
 })
 export class FancyBoxComponent implements OnInit {
-
+  @Input() image:string;
+  baseUrl = environment.apiUrl;
   constructor() { }
 
   ngOnInit(): void {

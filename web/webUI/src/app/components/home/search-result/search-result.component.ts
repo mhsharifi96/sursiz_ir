@@ -15,6 +15,7 @@ export class SearchResultComponent implements OnInit {
   next_page :string="";
   number_next_page :number=1;
   previous_page;
+  spinnerScroll= true;
   allTwit=[];
 
   constructor(private router: ActivatedRoute,private homeService:HomeService,
@@ -43,6 +44,9 @@ export class SearchResultComponent implements OnInit {
         this.next_page = data['next']
         this.previous_page = data['previous']
         this.allTwit = this.allTwit.concat(data['results'])
+        this.spinnerScroll = true;
+        this.spinner.hide()
+        
         console.log('length : ',this.allTwit.length)
       }
     )
@@ -53,12 +57,14 @@ export class SearchResultComponent implements OnInit {
   onScroll() {
     console.log('scrolled!!');
     this.spinner.show()
-    // if (this.next_page){
-    //   this.number_next_page +=1
-    //   console.log('next page +1: ',this.number_next_page)
-    //   this.getTwits(this.number_next_page)
+    if (this.next_page && this.spinnerScroll){
+      this.number_next_page +=1
+      this.spinnerScroll=false;
+      console.log('next page +1: ',this.number_next_page)
+      this.getTwits(this.number_next_page)
+      
 
-    // }
+    }
   }
 
 }
