@@ -20,6 +20,6 @@ export class TitleCardComponent implements OnInit {
   }
 
   
-
+// TODO : use Pipe
 
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import { FormGroup, FormBuilder } from  '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from  '@angular/forms';
+import { Router } from '@angular/router';
 
 
 const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
@@ -25,23 +26,27 @@ export class SearchComponent implements OnInit {
   public model: any;
   searchForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.createSearchForm();
+  constructor(private formBuilder: FormBuilder,private router:Router) {
+    
    }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.createSearchForm();
+  }
 
   createSearchForm(){
     this.searchForm = this.formBuilder.group({
-      companyName: [''],  
-      description: [''],
+      // companyName: [''],  
+      description: new FormControl('', [Validators.required,Validators.minLength(2)]),
       
     });
   }
 
 
   onSubmit() {
-    console.log('Your form data : ', this.searchForm.value.companyName );
+    console.log('Your form data : ', this.searchForm );
+    if (this.searchForm.value.description)
+      this.router.navigate(['/result',this.searchForm.value.description]);
   }
 
 

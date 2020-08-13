@@ -29,8 +29,19 @@ export class SearchResultComponent implements OnInit {
     // console.log(this.router.snapshot.params.company); 
     this.router.params.subscribe((data:any)=>{
       console.log("man injam",data); // outputs: {slug: "angular"}
+      this.homeService.SearchOnDescription(data.description).subscribe(
+        data =>{
+          console.log('search on description data : ',data)
+          this.allTwit = this.allTwit.concat(data['results'])
+          this.next_page = data['next']
+          this.previous_page = data['previous']
+          this.spinnerScroll = true;
+          this.spinner.hide()
+
+        },(error)=>console.log(error)
+      )
     })
-    this.getTwits()
+    // this.getTwits()
 
     
   }
@@ -41,9 +52,9 @@ export class SearchResultComponent implements OnInit {
         console.log('twits contains : ',data['results'])
         console.log('next page :',data['next'])
         console.log('previous page : ',data['previous'])
-        this.next_page = data['next']
-        this.previous_page = data['previous']
-        this.allTwit = this.allTwit.concat(data['results'])
+        // this.next_page = data['next']
+        // this.previous_page = data['previous']
+        // this.allTwit = this.allTwit.concat(data['results'])
         this.spinnerScroll = true;
         this.spinner.hide()
         
@@ -54,17 +65,34 @@ export class SearchResultComponent implements OnInit {
 
 
 
-  onScroll() {
-    console.log('scrolled!!');
-    this.spinner.show()
-    if (this.next_page && this.spinnerScroll){
-      this.number_next_page +=1
-      this.spinnerScroll=false;
-      console.log('next page +1: ',this.number_next_page)
-      this.getTwits(this.number_next_page)
+  // onScroll() {
+  //   console.log('scrolled!!');
+  //   this.spinner.show()
+  //   if (this.next_page && this.spinnerScroll){
+  //     this.number_next_page +=1
+  //     this.spinnerScroll=false;
+  //     console.log('next page +1: ',this.number_next_page)
+  //     this.getTwits(this.number_next_page)
       
 
-    }
+  //   }
+  // }
+
+  onScroll(){
+    console.log("************ OnScroll **************")
+    this.spinner.show()
+    // alert('در حال لود بیشتر')
+    if(this.next_page)
+      
+      this.homeService.searchOnDescriptionpaginate(this.next_page).subscribe(
+        data=>{
+          this.allTwit = this.allTwit.concat(data['results'])
+          this.next_page = data['next']
+          this.previous_page = data['previous']
+          this.spinner.hide()
+        },(error)=>console.log(error)
+      )
+
   }
 
 }

@@ -10,7 +10,7 @@ import { SearchResultComponent } from './components/home/search-result/search-re
 
 const routes: Routes = [
   {path : "",component : HomePageComponent },
-  {path : "result/:company",component : SearchResultComponent},
+  {path : "result/:description",component : SearchResultComponent},
 ];
 
 @NgModule({

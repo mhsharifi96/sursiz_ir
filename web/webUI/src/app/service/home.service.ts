@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class HomeService {
 
   private readonly twitUrl = `${environment.apiUrl}/api/app/twit/`;
+  private readonly twitsearchUrl =`${environment.apiUrl}/api/app/search/`
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +24,17 @@ export class HomeService {
 
   getPaginationTwits(pageUrl){
     return this.http.get(pageUrl);
+  }
+
+  SearchOnDescription(description){
+    let params = new HttpParams().set('description__contains',description);
+    console.log(this.http.get(this.twitsearchUrl,{params}))
+    return this.http.get(this.twitsearchUrl,{params});
+
+  }
+
+  searchOnDescriptionpaginate(url){
+    return this.http.get(url)
   }
 
 
