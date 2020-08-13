@@ -83,6 +83,7 @@ class TwitDocument(Document):
             'suggest': fields.CompletionField(),
         }
     )
+    created_on = fields.DateField(attr='created_on')
     
 
     class Django(object):

@@ -79,7 +79,7 @@ class TwitSerializers(serializers.ModelSerializer):
 
 
 class TwitDocumentSerializers(DocumentSerializer):
-    
+    # company = CompanySerializers()
     class Meta : 
         document = TwitDocument
-        fields = ('id', 'image', 'title','description', 'company','status' )
+        fields = ('id', 'image', 'title','description', 'company','status','created_on')
