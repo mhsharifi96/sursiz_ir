@@ -12,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class SearchResultComponent implements OnInit {
   company: string;
   twits =[];
+  twitCount:number = 1;
   next_page :string="";
   number_next_page :number=1;
   previous_page;
@@ -33,6 +34,7 @@ export class SearchResultComponent implements OnInit {
         data =>{
           console.log('search on description data : ',data)
           this.allTwit = this.allTwit.concat(data['results'])
+          this.twitCount = data['count']
           this.next_page = data['next']
           this.previous_page = data['previous']
           this.spinnerScroll = true;

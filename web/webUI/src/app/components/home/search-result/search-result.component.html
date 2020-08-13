@@ -1,10 +1,27 @@
 <div class="container">
 
-  <div class="row">
-    <h4>
-      نتایج جستجو :
-    </h4>
+  <div class="card" style="margin: 4% 0;">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <h4>
+            نتایج جستجو :
+            
+          </h4>
+          
+        </div>
+        <div class="col-8">
+          <p>
+            <span class="badge badge-success">{{twitCount}}</span>
+            تا یافت شد
+          </p>
+        </div>
+
+      </div>
+
+    </div>
   </div>
+  
   <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150"
     (scrolled)="onScroll()">
     <div class="card-columns">
