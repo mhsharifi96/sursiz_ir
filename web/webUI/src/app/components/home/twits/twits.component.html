@@ -1,0 +1,65 @@
+
+
+<div class="container">
+   
+            <div class="card-columns">
+                        
+                <div class="card">
+                    <div class="card-title">sghl
+                        <div class="card-body">
+                            باشه
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">sghl
+                        <div class="card-body">
+                            باشه
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">sghl
+                        <div class="card-body">
+                            باشه
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div *ngFor="let d of pageTwit | paginate: { itemsPerPage: 100, currentPage: p,totalItems:countAllTwit }" >
+                
+                <p>{{d.created_on}}</p>
+                <hr>
+              </div>
+              <pagination-controls (pageChange)="pageChanged($event);p = $event" class="float-right"></pagination-controls>
+
+            <!-- <div class="card-footer pb-0 pt-3">
+                <ul *ngIf="countAllTwit>0" class="pagination">
+                    <li [ngClass]="{disabled:currentPage === 1}" class="page-item first-item">
+                        <a routerLink [routerLink]="['/signals']" [queryParams]="{ page: 1 }" class="page-link">First</a>
+                    </li>
+                    <li [ngClass]="{disabled:currentPage === 1}" class="page-item previous-item">
+                        <a routerLink [routerLink]="['/signals']" [queryParams]="{ page: currentPage - 1 }" class="page-link">Previous</a>
+                    </li>
+                    <li *ngFor="let page of totalPages" [ngClass]="{active:currentPage === page}" class="page-item number-item">
+                        <a routerLink [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:currentPage === totalPages}" class="page-item next-item">
+                        <a routerLink [routerLink]="['/signals']" [queryParams]="{ page: currentPage + 1 }" class="page-link">Next</a>
+                    </li>
+                    <li [ngClass]="{disabled:currentPage === totalPages}" class="page-item last-item">
+                        <a routerLink [routerLink]="['/signals']" [queryParams]="{ page: totalPages }" class="page-link">Last</a>
+                    </li>
+                </ul>
+            </div> -->
+
+            
+</div>
+   

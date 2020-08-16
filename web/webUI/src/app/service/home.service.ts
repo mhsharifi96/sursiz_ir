@@ -15,6 +15,7 @@ export class HomeService {
 
   fetchtwits(pageNumber:string="1",offset:string="0",limit:string="100"){
     // param https://www.tektutorialshub.com/angular/angular-pass-url-parameters-query-strings/
+    console.log("on home service : ",pageNumber)
     let params = new HttpParams()
                 .set('page', pageNumber)
                 .set('offset', offset)

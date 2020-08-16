@@ -7,6 +7,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { NgxPaginationModule} from 'ngx-pagination'
 
 
 
@@ -22,6 +23,7 @@ import { ImageCardComponent } from './components/common/card/image-card/image-ca
 import { TitleCardComponent } from './components/common/card/title-card/title-card.component';
 import { QuoteCardComponent } from './components/common/card/quote-card/quote-card.component';
 import { FancyBoxComponent } from './components/common/fancy-box/fancy-box.component';
+import { TwitsComponent } from './components/home/twits/twits.component';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { FancyBoxComponent } from './components/common/fancy-box/fancy-box.compo
     ImageCardComponent,
     TitleCardComponent,
     QuoteCardComponent,
-    FancyBoxComponent
+    FancyBoxComponent,
+    TwitsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { FancyBoxComponent } from './components/common/fancy-box/fancy-box.compo
     BrowserAnimationsModule,
     InfiniteScrollModule,
     NgxSpinnerModule,
+    NgxPaginationModule
 
     
   ],
