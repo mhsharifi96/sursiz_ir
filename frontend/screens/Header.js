@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {
     View,
     Image,
@@ -6,7 +6,7 @@ import {
     TouchableOpacity, StatusBar, Animated, TextInput
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import {NavigationActions} from 'react-navigation'
+//import {NavigationActions} from 'react-navigation';
 //import details from './details';
 import styles from './styles';
 import Toast from 'react-native-simple-toast';
@@ -33,74 +33,58 @@ import Toast from 'react-native-simple-toast';
 // }
 let nav;
 
-export default class Header extends Component {
-    constructor(props) {
-        super(props);
-        console.log('props', this.props.navigationProps);
-        nav=this.props.navigationProps;
-        Store.page='Home';
-        this.state = {
-            search: false,
-            animate: "fadeInRightBig",
-            searchText:"",
-            page:'1',
-            pageScreen:this.props.pageScreen
-
+export default function Header(props)  {
+    
+           [search, setSearch]= useState(false);
+            [animate,setAnimate]= useState("fadeInRightBig");
+            [searchText, setSearchText]=useState("");
+    const [page, setPage] = useState('1')
+const [pageScreen, setPageScreen] = useState(props.PageScreen)
         }
-        this.showSearch = this.showSearch.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
-        this.navigationToScreen = this.navigationToScreen.bind(this);
-
-    }
-
-    showSearch = () => {
-        if (this.state.search) {
-            this.setState({
-                    animate: "fadeOutLeftBig"
-                }, () =>
-                    setTimeout(() => this.setState({
-                        search: !this.state.search
-                    }, () =>
-                        this.setState({
-                            animate: "fadeInRightBig",
-                            searchText:''
-                        })), 250)
-            )
+        
+    function showSearch(){
+        if (search) {
+            setAnimate("fadeOutLeftBig")
+                
+                    setTimeout(() => {
+                    setSearch (!this.state.search)
+                    setAnimate("fadeOutLeftBig")
+                    setSearchText('')
+                        }, 250)
+            
         } else {
-            this.setState({
-                search: !this.state.search
-            });
+            setSearch (!this.state.search)
+
         }
 
 
     };
-    GetValueFunction = (text) =>{
+   function GetValueFunction (text) {
 
-        this.setState({searchText : text}) ;
-
+        setSearchText (text)
 
     };
-    handleSearch=()=>{
-        if(this.props.pageScreen === 'Home'){
-            if(this.state.searchText!==''){
-        nav.navigate('search', {searchText: this.state.searchText, page:1,pageScreen:this.state.pageScreen});
-        this.setState({search:false})
+  function handleSearch(){
+        if(props.pageScreen === 'Home'){
+            if(searchText!==''){
+        //nav.navigate('search', {searchText: this.state.searchText, page:1,pageScreen:this.state.pageScreen});
+        setSearch(false)
             }
             else{
                 Toast.show('لطفا عبارت موردنظر را وارد کنید')
             }
-        console.log('nav',this.state.searchText);
+        console.log('nav',searchText);
         }
-        else if(this.props.pageScreen === 'service'){
-            if(this.state.searchText!==''){
+        else if(props.pageScreen === 'service'){
+            if(searchText!==''){
 
-            nav.navigate('searchService', {searchText: this.state.searchText, page:1,pageScreen:this.state.pageScreen});
-            this.setState({search:false})
+           // nav.navigate('searchService', {searchText: this.state.searchText, page:1,pageScreen:this.state.pageScreen});
+            setSearch(false)
         }
             else{
                 Toast.show('لطفا عبارت موردنظر را وارد کنید')
             }
-            console.log('nav',this.state.searchText);
+            console.log('nav',searchText);
         }
 
     };
@@ -125,14 +109,14 @@ export default class Header extends Component {
                     {this.state.search ?
                         <Animatable.View
                             style={[styles.headerSearch, {flexDirection: 'row', justifyContent: 'space-between'}]}
-                            animation={this.state.animate} duration={300}>
+                            animation={animate} duration={300}>
                             <TouchableOpacity
                                 style={{
                                     justifyContent: 'center',
                                     alignItems: 'center',
                                     marginLeft: 15
                                 }}
-                                onPress={this.showSearch}
+                                onPress={showSearch}
                             >
                                 <Image source={require('./../assets/close.png')} style={styles.iconClose}/>
 
@@ -146,7 +130,7 @@ export default class Header extends Component {
                                     marginTop: 5, marginBottom: 5
                                 }]}
                                 returnKeyType='search'
-                                placeholder={'جست و جو در استاک'}
+                                placeholder={'جست و جو  '}
                                 onSubmitEditing={() => this.handleSearch()}
                             />
 
@@ -174,10 +158,11 @@ export default class Header extends Component {
                                 </TouchableOpacity>
                                    
                                 <TouchableOpacity style={{marginLeft:10}}
-                                                  onPress={()=>Store.SignIn ?
-                                                      nav.navigate('profileStack')
-                                                      :
-                                                      nav.navigate('loginPageStack')}>
+                                                //   onPress={()=>Store.SignIn ?
+                                                //       nav.navigate('profileStack')
+                                                //       :
+                                                //       nav.navigate('loginPageStack')}
+                                                >
                                     <Image source={require('../assets/profile.png')}
                                            style={[styles.header_icon, {tintColor: '#f4f4f4'}]}
                                     />
@@ -187,7 +172,7 @@ export default class Header extends Component {
                             <View style={{flex: 1}}>
                                 < TouchableOpacity
                                     style={[styles.headers, {justifyContent: 'flex-end', paddingRight: 10}]}
-                                    onPress={() => this.props.navigationProps.toggleDrawer()}>
+                                    onPress={() => props.navigationProps.toggleDrawer()}>
                                     <Image source={require('../assets/noun_menu.png')}
                                            style={[styles.header_icon, {tintColor: '#FFF'}]}
                                     />

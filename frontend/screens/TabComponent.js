@@ -36,7 +36,7 @@ export default function TabComponent(props) {
               tintColor: props.TabScreen === 'Chanel' ? 'rgb(236, 166, 12)' : '#fff',
             },
           ]}
-          source={require('../assets/shopping-cart.png')}
+          source={require('../assets/telegram.png')}
         />
         {props.TabScreen === 'Chanel' ? (
           <Text
@@ -61,7 +61,7 @@ export default function TabComponent(props) {
               tintColor: props.TabScreen === 'Twitter' ? 'rgb(236, 166, 12)' : '#fff',
             },
           ]}
-          source={require('../assets/live.png')}
+          source={require('../assets/twitter.png')}
         />
         {props.TabScreen === 'Twitter' ? (
           <Text
@@ -69,32 +69,33 @@ export default function TabComponent(props) {
               styles.fontFaceBold,
               { fontSize: 13, color: 'rgb(236, 166, 12)', top: 1, textAlign: 'center' },
             ]}>
-            اخبار
+            {' '}
+            توییتر
           </Text>
         ) : null}
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={1}
         style={[styles.center, { width: '20%' }]}
-        onPress={() => props.navigationProps.navigate('Stock')}>
+        onPress={() => props.navigationProps.navigate('ListOfStock')}>
         <Image
           style={[
             {
               width: 25,
               height: 25,
               alignSelf: 'center',
-              tintColor: props.TabScreen === 'Stock' ? 'rgb(236, 166, 12)' : '#fff',
+              tintColor: props.TabScreen === 'ListOfStock' ? 'rgb(236, 166, 12)' : '#fff',
             },
           ]}
-          source={require('../assets/service.png')}
+          source={require('../assets/shopping-cart.png')}
         />
-        {props.TabScreen === 'Stock' ? (
+        {props.TabScreen === 'ListOfStock' ? (
           <Text
             style={[
               styles.fontFaceBold,
               { fontSize: 13, color: 'rgb(236, 166, 12)', textAlign: 'center' },
             ]}>
-            خدمات
+            سهام
           </Text>
         ) : null}
       </TouchableOpacity>
@@ -111,7 +112,7 @@ export default function TabComponent(props) {
               tintColor: props.TabScreen === 'Home' ? 'rgb(236, 166, 12)' : '#fff',
             },
           ]}
-          source={require('../assets/shop.png')}
+          source={require('../assets/home.png')}
         />
         {props.TabScreen === 'Home' ? (
           <Text
@@ -119,7 +120,7 @@ export default function TabComponent(props) {
               styles.fontFaceBold,
               { fontSize: 13, color: 'rgb(236, 166, 12)', textAlign: 'center' },
             ]}>
-            ویترین
+            خانه
           </Text>
         ) : null}
       </TouchableOpacity>
