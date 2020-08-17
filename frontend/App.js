@@ -7,6 +7,7 @@ import Home from './screens/Home';
 import Twitter from './screens/Twitter';
 import Chanel from './screens/Chanel';
 import ListOfStock from './screens/ListOfStock';
+import Search from './screens/Search';
 import Stock from './screens/Stock';
 import axios from 'axios';
 // axios.defaults.baseURL = 'http://4c8e3a63.ngrok.io/api/';
@@ -63,6 +64,7 @@ const AppNavigator = createStackNavigator(
     Chanel: Chanel,
     ListOfStock: ListOfStock,
     Stock: Stock,
+    Search: Search,
   },
   {
     initialRouteName: 'Home',

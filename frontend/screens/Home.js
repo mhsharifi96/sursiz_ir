@@ -3,7 +3,7 @@ import { Text, View, ScrollView, Image } from 'react-native';
 import TabComponent from './TabComponent';
 import SwiperComponent from './swiper';
 import Swiper from 'react-native-swiper';
-
+import Header from './Header';
 import styles from './styles';
 
 export default function Home(props) {
@@ -73,12 +73,12 @@ export default function Home(props) {
   // const { stock, setStock }=useState([{nam:'',number:},{nam:'',number:},{nam:'',number}])
   return (
     <View style={{ flexGrow: 1, backgroundColor: '#EBDEF0' }}>
+      <Header navigationProps={props.navigation} />
       <View style={styles.swiperview}>
         <Swiper
           style={styles.wrapper}
           showsButtons={true}
           key={slideShow.length}
-          style={styles.wrapper}
           dotColor={'#EBDEF0'}
           nextButton={<Text style={{ color: '#6b3281', fontSize: 50 }}>›</Text>}
           prevButton={<Text style={{ color: '#6b3281', fontSize: 50 }}>‹</Text>}

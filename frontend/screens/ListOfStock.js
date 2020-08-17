@@ -153,7 +153,8 @@ export default function ListOfStock(props) {
                   height: null,
                   marginBottom: 10,
                 }}>
-                <TouchableOpacity onPress={() => props.navigationProps.navigate('Stock', { id: item.id })}>
+                <TouchableOpacity
+                  onPress={() => props.navigationProps.navigate('Stock', { id: item.id })}>
                   <View
                     style={[
                       style.rowEnd,

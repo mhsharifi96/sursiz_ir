@@ -127,7 +127,7 @@ export default (styles = StyleSheet.create({
     flexWrap: 'wrap',
     width: '100%',
     height: 60,
-    backgroundColor: 'rgb(0, 125, 132)',
+    backgroundColor: '#6b3281',
     elevation: 2,
   },
   logoStyle: {
