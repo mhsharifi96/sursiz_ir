@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .serializers import TwitSerializers
+from .serializers import TwitSerializers,CompanySerializers,CategotySerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import datetime
-from bors.models import Twit,Company
+from bors.models import Twit,Company,Category
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
 from rest_framework.parsers import MultiPartParser
@@ -11,6 +11,9 @@ from django.http import Http404
 
 from rest_framework.pagination import PageNumberPagination
 from project.pagination import PaginationHandlerMixin
+
+from rest_framework import viewsets
+from  django.shortcuts import get_object_or_404
 
 
 class TwitApiAdminView(APIView):
@@ -83,9 +86,6 @@ class TwitApiView(APIView, PaginationHandlerMixin):
 
 
 
-
-
-
 class TwitDetailApiView(APIView):
     def get_object(self, pk):
         try:
@@ -109,4 +109,166 @@ class TwitDetailApiView(APIView):
 
 
 
+
+class CompanyViewSet(viewsets.ViewSet):
+    def list(self,request):
+        queryset = Company.objects.filter(status=1)
+        serializer = CompanySerializers(queryset,many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def retrieve(self,request,pk):
+        queryset = Company.objects.filter(status=1)
+        company = get_object_or_404(queryset,pk=pk)
+        serializer = CompanySerializers(company)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class CategoryViewset(viewsets.ViewSet):
+    def list(self,request):
+        queryset = Category.objects.all()
+        serializer = CategotySerializer(queryset,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+    def retrieve(self,request,pk):
+        queryset = Category.objects.all()
+        category = get_object_or_404(queryset,pk=pk)
+        serializer = CategotySerializer(category)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    
+
+
+
+
+
+### ElasticSearch 
+
+from django_elasticsearch_dsl_drf.constants import (
+    LOOKUP_FILTER_TERMS,
+    LOOKUP_FILTER_RANGE,
+    LOOKUP_FILTER_PREFIX,
+    LOOKUP_FILTER_WILDCARD,
+    LOOKUP_QUERY_IN,
+    LOOKUP_QUERY_GT,
+    LOOKUP_QUERY_GTE,
+    LOOKUP_QUERY_LT,
+    LOOKUP_QUERY_LTE,
+    LOOKUP_QUERY_EXCLUDE,
+    SUGGESTER_TERM,
+    SUGGESTER_PHRASE,
+    SUGGESTER_COMPLETION,
+)
+from django_elasticsearch_dsl_drf.filter_backends import (
+    FilteringFilterBackend,
+    IdsFilterBackend,
+    OrderingFilterBackend,
+    DefaultOrderingFilterBackend,
+    SearchFilterBackend,
+    SuggesterFilterBackend,
+    FunctionalSuggesterFilterBackend,
+)
+from django_elasticsearch_dsl_drf.viewsets import BaseDocumentViewSet,DocumentViewSet
+from django_elasticsearch_dsl_drf.pagination import PageNumberPagination
+
+from .document import TwitDocument
+from .serializers import TwitDocumentSerializers
+
+class TwitDocumentView(DocumentViewSet):
+    """The TwitDocument view."""
+
+    document = TwitDocument
+    serializer_class = TwitDocumentSerializers
+    pagination_class = PageNumberPagination
+    lookup_field = 'id'
+    filter_backends = [
+        SuggesterFilterBackend,
+        FilteringFilterBackend,
+        IdsFilterBackend,
+        OrderingFilterBackend,
+        DefaultOrderingFilterBackend,
+        SearchFilterBackend,
+        FunctionalSuggesterFilterBackend,
+        
+    ]
+    # Define search fields
+    search_fields = (
+        'title',
+        'description',
+        'status',
+        'category',
+        'company.name',
+        'company.id'
+        
+    )
+    # Define filter fields
+    filter_fields = {
+        'id': {
+            'field': 'id',
+            # Note, that we limit the lookups of id field in this example,
+            # to `range`, `in`, `gt`, `gte`, `lt` and `lte` filters.
+            'lookups': [
+                LOOKUP_FILTER_RANGE,
+                LOOKUP_QUERY_IN,
+                LOOKUP_QUERY_GT,
+                LOOKUP_QUERY_GTE,
+                LOOKUP_QUERY_LT,
+                LOOKUP_QUERY_LTE,
+            ],
+        },
+        'title': 'title',
+        'description': 'description',
+        'category': 'category',
+        'company_name': 'company.name',
+        'company_id' : 'company.id',
+        'status' : 'status',
+
+        
+        # 'pages': {
+        #     'field': 'pages',
+        #     # Note, that we limit the lookups of `pages` field in this
+        #     # example, to `range`, `gt`, `gte`, `lt` and `lte` filters.
+        #     'lookups': [
+        #         LOOKUP_FILTER_RANGE,
+        #         LOOKUP_QUERY_GT,
+        #         LOOKUP_QUERY_GTE,
+        #         LOOKUP_QUERY_LT,
+        #         LOOKUP_QUERY_LTE,
+        #     ],
+        # },
+        
+    }
+
+
+    # Suggester fields
+    suggester_fields = {
+        'title_suggest': {
+            'field': 'title.suggest',
+            'suggesters': [
+                # SUGGESTER_TERM,
+                # SUGGESTER_PHRASE,
+                SUGGESTER_COMPLETION,
+            ],
+        },
+        
+    'description_suggest': {
+            'field': 'description.suggest',
+            'suggesters': [
+                SUGGESTER_COMPLETION,
+            ],
+        },
+
+    }
+
+    
+
+    # Define ordering fields
+    ordering_fields = {
+        'id': 'id',
+        # 'title': 'title',
+        
+        
+        
+    }
+    # Specify default ordering
+    ordering = ('-id',)
+
+#END ElasticSearch
 

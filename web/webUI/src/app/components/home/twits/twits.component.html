@@ -1,0 +1,18 @@
+<div class="container">
+
+
+    <div class="card-columns">
+        <div *ngFor="let twit of pageTwit | paginate: { itemsPerPage: 100, currentPage: p,totalItems:countAllTwit }">
+
+            <app-image-card *ngIf="twit.image" [twit]="twit">
+            </app-image-card>
+            <app-title-card *ngIf="!twit.image" [twit]="twit">
+            </app-title-card>
+
+        </div>
+    </div>
+    <div class="col-12">
+        <pagination-controls (pageChange)="pageChanged($event);p = $event" class="float-right"></pagination-controls>
+    </div>
+
+</div>

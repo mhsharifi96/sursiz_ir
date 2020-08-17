@@ -1,0 +1,57 @@
+<div class="container">
+
+  <div class="card" style="margin: 4% 0;">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <h4>
+            نتایج جستجو :
+            
+          </h4>
+          
+        </div>
+        <div class="col-8">
+          <p>
+            <span class="badge badge-success">{{twitCount}}</span>
+            تا یافت شد
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150"
+    (scrolled)="onScroll()">
+    <div class="card-columns">
+
+
+      <div *ngFor="let twit of allTwit">
+
+        <app-image-card *ngIf="twit.image" [twit]="twit">
+        </app-image-card>
+        <app-title-card *ngIf="!twit.image"  [twit]="twit">
+        </app-title-card>
+
+
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="col-12" style="margin-bottom: 5rem;padding: bottom 5%;">
+    <ngx-spinner bdOpacity=0.9 bdColor="" size="default" color="#581f87" type="ball-pulse-sync" [fullScreen]="false">
+
+    </ngx-spinner>
+
+    <!-- https://www.npmjs.com/package/ngx-spinner -->
+  </div>
+
+
+
+</div>

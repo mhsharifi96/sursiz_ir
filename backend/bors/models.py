@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 # Create your models here.
+from django_elasticsearch_dsl_drf.wrappers import dict_to_obj
+
 
 class Company(models.Model):
     STATUS = (
@@ -69,3 +71,29 @@ class Twit(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("Twit_detail", kwargs={"pk": self.pk})
+    
+
+
+    @property
+    def company_indexing(self):
+        """Country data (nested) for indexing.
+
+        Example:
+
+        >>> mapping = {
+        >>>     'company': {
+        >>>         'name': 'test company',
+        >>>     }
+        >>> }
+
+        :return:
+        """
+        wrapper = dict_to_obj({
+            'name': self.company.name,
+        })
+
+        return wrapper
+
+
+
+    
