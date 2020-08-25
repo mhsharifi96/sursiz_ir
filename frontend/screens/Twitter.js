@@ -1,5 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, FlatList, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  Text,
+  View,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+  Animated,
+} from 'react-native';
 import TabComponent from './TabComponent';
 import SwiperComponent from './swiper';
 import axios from 'axios';
@@ -7,6 +15,25 @@ import style from './styles';
 export default function twitter(props) {
   // const [showFooter, setShowFooter] = useState(true);
   const [loading, setLoading] = useState(false);
+  // fadeAnim will be used as the value for opacity. Initial Value: 0
+  const fadeAnim = useRef(new Animated.Value(200)).current;
+
+  const fadeIn = () => {
+    setMore(false);
+    // Will change fadeAnim value to 1 in 5 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 200,
+      duration: 500,
+    }).start();
+  };
+
+  const fadeOut = () => {
+    // Will change fadeAnim value to 0 in 5 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 600,
+      duration: 500,
+    }).start(setMore(true));
+  };
 
   // const [lastPage, setLastPage] = useState(false);
   const [refreshingFlatList, setRefreshingFlatList] = useState(false);
@@ -129,7 +156,7 @@ export default function twitter(props) {
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                  <View
+                  <Animated.View
                     style={[
                       style.detailsTextShop,
                       {
@@ -137,18 +164,15 @@ export default function twitter(props) {
                         justifyContent: 'flex-end',
                         width: '96%',
                         marginLeft: '2%',
-                        height: more ? null : 200,
+                        height: fadeAnim,
                       },
                     ]}>
-                    <TouchableOpacity onPress={() => setMore(!more)}>
-                      <Text
-                        style={[style.rowEnd, style.fontFace, style.description]}
-                        numberOfLines={more ? null : 4}
-                        ellipsizeMode={'tail'}>
+                    <TouchableOpacity style={{ borderWidth: 1 }} onPress={fadeOut}>
+                      <Text style={[style.rowEnd, style.fontFace, style.description]}>
                         {item.description}
                       </Text>
                     </TouchableOpacity>
-                  </View>
+                  </Animated.View>
                 </View>
                 <View
                   style={{

@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
-import {
-  Text,
-  View,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  ActivityIndicator,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, Image, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import style from './styles';
 import TabComponent from './TabComponent';
+import axios from 'axios';
 
 export default function ListOfStock(props) {
   const [data, setData] = useState([
@@ -133,95 +126,118 @@ export default function ListOfStock(props) {
       image: 'https://www.stockisho.com/upload/categories/163/zo3cK.PNG',
     },
   ]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://borsiz.ir/api/app/company`,
+    })
+      .then(res => {
+        console.log('resultlist', res.data);
+        setData(res.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log('err shop box:', error.res);
+        setLoading(false);
+      });
+  });
   return (
     <View>
-      <View style={{ backgroundColor: '#eeeef0', marginTop: 70, marginBottom: 10 }}>
-        <FlatList
-          style={{ marginBottom: 60 }}
-          data={data}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => {
-            return (
-              <View
-                style={{
-                  width: '95%',
-                  borderWidth: 1,
-                  borderColor: '#cbcbcb',
-                  elevation: 2,
-                  backgroundColor: '#fbfbfb',
-                  alignSelf: 'center',
-                  height: null,
-                  marginBottom: 10,
-                }}>
-                <TouchableOpacity
-                  onPress={() => props.navigationProps.navigate('Stock', { id: item.id })}>
+      {!loading ? (
+        <View>
+          <View style={{ backgroundColor: '#eeeef0', marginTop: 70, marginBottom: 10 }}>
+            <FlatList
+              style={{ marginBottom: 60 }}
+              data={data}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item }) => {
+                return (
                   <View
-                    style={[
-                      style.rowEnd,
-                      {
-                        width: '96%',
-                        alignItems: 'flex-start',
-                        alignSelf: 'flex-end',
-                        justifyContent: 'flex-end',
-                      },
-                    ]}>
-                    <View
-                      styles={[
-                        {
-                          alignItems: 'flex-start',
-                          alignSelf: 'flex-start',
-                          justifyContent: 'flex-start',
-                        },
-                      ]}>
-                      <Text
-                        numberOfLines={2}
-                        ellipsizeMode={'tail'}
-                        maxLength={5}
+                    style={{
+                      width: '95%',
+                      borderWidth: 1,
+                      borderColor: '#cbcbcb',
+                      elevation: 2,
+                      backgroundColor: '#fbfbfb',
+                      alignSelf: 'center',
+                      height: null,
+                      marginBottom: 10,
+                    }}>
+                    <TouchableOpacity
+                      onPress={() => props.navigationProps.navigate('Stock', { id: item.id })}>
+                      <View
                         style={[
-                          style.fontFaceBYekan,
+                          style.rowEnd,
                           {
-                            textAlign: 'right',
-                            justifyContent: 'flex-end',
+                            width: '96%',
+                            alignItems: 'flex-start',
                             alignSelf: 'flex-end',
-                            marginRight: 10,
-                            marginTop: 5,
-                            // width:'30%',
-                            width: 200,
-                            // borderWidth:1,
+                            justifyContent: 'flex-end',
                           },
                         ]}>
-                        {' '}
-                        {item.title}
-                      </Text>
-                    </View>
-                    <Image
-                      source={{ uri: item.photo }}
-                      style={{
-                        alignSelf: 'flex-end',
-                        justifyContent: 'flex-end',
-                        width: 102,
-                        height: 90,
-                        marginTop: 2,
-                        marginBottom: 2,
-                        marginRight: '1%',
-                      }}
-                    />
+                        <View
+                          styles={[
+                            {
+                              alignItems: 'flex-start',
+                              alignSelf: 'flex-start',
+                              justifyContent: 'flex-start',
+                            },
+                          ]}>
+                          <Text
+                            numberOfLines={2}
+                            ellipsizeMode={'tail'}
+                            maxLength={5}
+                            style={[
+                              style.fontFaceBYekan,
+                              {
+                                textAlign: 'right',
+                                justifyContent: 'flex-end',
+                                alignSelf: 'flex-end',
+                                marginRight: 10,
+                                marginTop: 5,
+                                // width:'30%',
+                                width: 200,
+                                // borderWidth:1,
+                              },
+                            ]}>
+                            {' '}
+                            {item.name}
+                          </Text>
+                        </View>
+                        <Image
+                          source={{ uri: item.imge }}
+                          style={{
+                            alignSelf: 'flex-end',
+                            justifyContent: 'flex-end',
+                            width: 102,
+                            height: 90,
+                            marginTop: 2,
+                            marginBottom: 2,
+                            marginRight: '1%',
+                          }}
+                        />
+                      </View>
+                    </TouchableOpacity>
                   </View>
-                </TouchableOpacity>
-              </View>
-            );
-          }}
-          keyExtractor={(item, index) => item.id}
-          // ListFooterComponent={this.renderFooter()}
-          // refreshing={this.state.refreshingFlatList}
-          // onRefresh={this._onRefresh}
-          // onEndReached={this.handleLoadMore}
-          onEndThreshold={0}
-          onEndReachedThreshold={0.1}
-        />
-      </View>
+                );
+              }}
+              keyExtractor={(item, index) => item.id}
+              // ListFooterComponent={this.renderFooter()}
+              // refreshing={this.state.refreshingFlatList}
+              // onRefresh={this._onRefresh}
+              // onEndReached={this.handleLoadMore}
+              onEndThreshold={0}
+              onEndReachedThreshold={0.1}
+            />
+          </View>
 
-      <TabComponent navigationProps={props.navigation} TabScreen={'ListOfStock'} />
+          <TabComponent navigationProps={props.navigation} TabScreen={'ListOfStock'} />
+        </View>
+      ) : (
+        <ActivityIndicator animating size="large" />
+      )}
     </View>
   );
 }
